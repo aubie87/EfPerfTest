@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Diagnostics.Debug;
 
 namespace EfPerfTest.MySqlEf6
 {
@@ -19,10 +20,11 @@ namespace EfPerfTest.MySqlEf6
             using var context = new MySqlEf6Context();
             
             // pre-migration testing
-            context.Database.CreateIfNotExists();
+            // context.Database.CreateIfNotExists();
 
             foreach (var customer in customers)
             {
+                WriteLine("Saving " + customer);
                 context.Customers.Add(customer);
                 context.SaveChanges();
             }

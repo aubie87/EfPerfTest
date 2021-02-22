@@ -19,7 +19,9 @@ namespace EfPerfTest
 
             IEnumerable<Customer> customers = new List<Customer>
             {
-                new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-17)}
+                new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-17)},
+                new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-19)},
+                new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-21)}
             };
 
             IEfPerfTestRepository repo = new MySqlEf6.MySqlEf6Repository();

@@ -10,8 +10,11 @@ using System.Threading.Tasks;
 namespace EfPerfTest.MySqlEf6
 {
     /// <summary>
-    /// To enable EF 6 code first migrations
+    /// To enable EF 6 code first migrations, select "Default project" as EfPerfTest.MySqlEf6 then run:
     /// > Enable-Migrations
+    /// Then create migrations by calling Add-Migration and naming each migration.
+    /// Then call Update-Database to push the migrations to the database. The database must be
+    /// online and accessible.
     /// </summary>
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class MySqlEf6Context : DbContext

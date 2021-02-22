@@ -9,6 +9,6 @@ namespace EfPerfTest.Common.Interfaces
 {
     public interface IEfPerfTestRepository
     {
-        void Save1PerCustomer(IList<Customer> customers);
+        void SaveOncePerCustomer(IEnumerable<Customer> customers);
     }
 }

@@ -17,13 +17,13 @@ namespace EfPerfTest
         {
             Console.WriteLine("Hello World!");
 
-            IList<Customer> customers = new List<Customer>
+            IEnumerable<Customer> customers = new List<Customer>
             {
                 new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-17)}
             };
 
             IEfPerfTestRepository repo = new MySqlEf6.MySqlEf6Repository();
-            repo.Save1PerCustomer(customers);
+            repo.SaveOncePerCustomer(customers);
             
             Console.WriteLine("End of the World!");
         }

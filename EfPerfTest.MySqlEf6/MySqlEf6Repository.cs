@@ -14,7 +14,7 @@ namespace EfPerfTest.MySqlEf6
         /// This should be the worst performing option of any.
         /// </summary>
         /// <param name="customers"></param>
-        public void Save1PerCustomer(IList<Customer> customers)
+        public void SaveOncePerCustomer(IEnumerable<Customer> customers)
         {
             using var context = new MySqlEf6Context();
             

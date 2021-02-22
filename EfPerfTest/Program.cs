@@ -1,11 +1,16 @@
-﻿using EfPerfTest.Core.Interfaces;
-using EfPerfTest.Core.Models;
+﻿using EfPerfTest.Common.Interfaces;
+using EfPerfTest.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace EfPerfTest
 {
+    /// <summary>
+    /// By design - this project should have NO dependencies on any EntityFramework 
+    /// library. The only dependencies should be on common Interfaces and the classes
+    /// that implement them.
+    /// </summary>
     class Program
     {
         static void Main(string[] args)

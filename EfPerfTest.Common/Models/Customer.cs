@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfPerfTest.Core.Models
+namespace EfPerfTest.Common.Models
 {
     public class Customer
     {

@@ -5,4 +5,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\EfPerfTest.MySqlEf6\EfPerfTest.MySqlEf6.csproj" />
+    <ProjectReference Include="..\EfPerfTest.Core\EfPerfTest.Core.csproj" />
+  </ItemGroup>
+
 </Project>

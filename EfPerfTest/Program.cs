@@ -1,4 +1,5 @@
 ﻿using EfPerfTest.Common.Models;
+using EfPerfTest.EfCore.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,7 @@ namespace EfPerfTest
                 new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-21)}
             };
 
-            Console.WriteLine("Save to: MySqlEf6Repository");
-
-            //Console.WriteLine("Save to: SQLiteEf6Repository");
-            //new SQLiteEf6Repository().SaveOncePerCustomer(customers);
+            new EfCoreSqliteRepository().SaveOncePerCustomer(customers);
 
             Console.WriteLine("End of the World!");
         }

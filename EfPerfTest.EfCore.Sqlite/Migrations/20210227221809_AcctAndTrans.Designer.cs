@@ -3,14 +3,16 @@ using System;
 using EfPerfTest.EfCore.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EfPerfTest.EfCore.Sqlite.Migrations
 {
     [DbContext(typeof(EfCoreSqliteContext))]
-    partial class EfCoreSqliteContextModelSnapshot : ModelSnapshot
+    [Migration("20210227221809_AcctAndTrans")]
+    partial class AcctAndTrans
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,7 +25,6 @@ namespace EfPerfTest.EfCore.Sqlite.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AcctNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AcctType")
@@ -45,18 +46,6 @@ namespace EfPerfTest.EfCore.Sqlite.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Address1")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Address2")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Address3")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Address4")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("TEXT");
 
@@ -66,7 +55,7 @@ namespace EfPerfTest.EfCore.Sqlite.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("EfPerfTest.Common.Models.Transaction", b =>
@@ -88,7 +77,6 @@ namespace EfPerfTest.EfCore.Sqlite.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TransType")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

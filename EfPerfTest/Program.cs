@@ -20,7 +20,16 @@ namespace EfPerfTest
 
             IEnumerable<Customer> customers = new List<Customer>
             {
-                new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-17)},
+                new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-17), Accounts = new List<Account>
+                {
+                    new Account { AcctNumber="5", AcctType="T", Transactions = new List<Transaction>
+                    {
+                        new Transaction { TransType = "D", Amount = 1.23m, Date = DateTime.UtcNow },
+                        new Transaction { TransType = "D", Amount = 14.23m, Date = DateTime.UtcNow },
+                        new Transaction { TransType = "D", Amount = 166.23m, Date = DateTime.UtcNow },
+                        new Transaction { TransType = "D", Amount = 1888.23m, Date = DateTime.UtcNow }
+                    }},
+                }},
                 new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-19)},
                 new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-21)}
             };

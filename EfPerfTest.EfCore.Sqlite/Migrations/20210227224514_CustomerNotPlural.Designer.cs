@@ -3,14 +3,16 @@ using System;
 using EfPerfTest.EfCore.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EfPerfTest.EfCore.Sqlite.Migrations
 {
     [DbContext(typeof(EfCoreSqliteContext))]
-    partial class EfCoreSqliteContextModelSnapshot : ModelSnapshot
+    [Migration("20210227224514_CustomerNotPlural")]
+    partial class CustomerNotPlural
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

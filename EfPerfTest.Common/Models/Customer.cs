@@ -11,6 +11,11 @@ namespace EfPerfTest.Common.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Birthday { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Address3 { get; set; }
+        public string Address4 { get; set; }
         public override string ToString() => $"{Id}:{Name}:{Birthday.ToShortDateString()}";
+        public IList<Account> Accounts { get; set; } = new List<Account>();
     }
 }

@@ -1,18 +1,18 @@
-﻿namespace EfPerfTest.MySqlEf6.Migrations
+﻿namespace EfPerfTest.Ef6.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<EfPerfTest.MySqlEf6.MySqlEf6Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<EfPerfTest.Ef6.MySqlContext.MySqlContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(EfPerfTest.MySqlEf6.MySqlEf6Context context)
+        protected override void Seed(EfPerfTest.Ef6.MySqlContext.MySqlContext context)
         {
             //  This method will be called after migrating to the latest version.
 

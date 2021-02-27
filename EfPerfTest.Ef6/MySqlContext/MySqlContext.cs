@@ -1,39 +1,37 @@
 ﻿using EfPerfTest.Common.Models;
+using EfPerfTest.Ef6.Configuration;
 using MySql.Data.EntityFramework;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfPerfTest.MySqlEf6
+namespace EfPerfTest.Ef6.MySqlContext
 {
-    /// <summary>
-    /// To enable EF 6 code first migrations, select "Default project" as EfPerfTest.MySqlEf6 then run:
-    /// > Enable-Migrations
-    /// Then create migrations by calling Add-Migration and naming each migration.
-    /// Then call Update-Database to push the migrations to the database. The database must be
-    /// online and accessible.
-    /// </summary>
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public class MySqlEf6Context : DbContext
+    public class MySqlContext : DbContext
     {
         public DbSet<Customer> Customers { get; set; }
 
-        public MySqlEf6Context()
-            : base("server=localhost;database=CustomerEf6;user=root;password=Gillen93!!")
+        public MySqlContext()
+            //: base("server=localhost;database=CustomerEf6;user=root;password=Gillen93!!")
+            : base(new MySqlConnection("server=localhost;database=CustomerEf6;user=root;password=Gillen93!!"), true)
         {
 
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            
             modelBuilder.Entity<Customer>()
                 .Property(p => p.Name)
                 .IsRequired()
                 .HasMaxLength(50);
         }
-
     }
 }

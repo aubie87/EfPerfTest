@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Diagnostics.Debug;
 
-namespace EfPerfTest.MySqlEf6
+namespace EfPerfTest.Ef6.MySqlContext
 {
     public class MySqlEf6Repository : IEfPerfTestRepository
     {
@@ -17,7 +17,7 @@ namespace EfPerfTest.MySqlEf6
         /// <param name="customers"></param>
         public void SaveOncePerCustomer(IEnumerable<Customer> customers)
         {
-            using var context = new MySqlEf6Context();
+            using var context = new MySqlContext();
             
             // pre-migration testing
             // context.Database.CreateIfNotExists();

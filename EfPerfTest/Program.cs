@@ -1,5 +1,5 @@
-﻿using EfPerfTest.Common.Interfaces;
-using EfPerfTest.Common.Models;
+﻿using EfPerfTest.Common.Models;
+using EfPerfTest.Ef6.MySqlContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,8 @@ namespace EfPerfTest
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
+            Console.WriteLine("Hello World! ");
 
             IEnumerable<Customer> customers = new List<Customer>
             {
@@ -24,9 +25,12 @@ namespace EfPerfTest
                 new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-21)}
             };
 
-            IEfPerfTestRepository repo = new MySqlEf6.MySqlEf6Repository();
-            repo.SaveOncePerCustomer(customers);
-            
+            Console.WriteLine("Save to: MySqlEf6Repository");
+            new MySqlEf6Repository().SaveOncePerCustomer(customers);
+
+            //Console.WriteLine("Save to: SQLiteEf6Repository");
+            //new SQLiteEf6Repository().SaveOncePerCustomer(customers);
+
             Console.WriteLine("End of the World!");
         }
     }

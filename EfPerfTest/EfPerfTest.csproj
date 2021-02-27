@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EfPerfTest.MySqlEf6\EfPerfTest.MySqlEf6.csproj" />
     <ProjectReference Include="..\EfPerfTest.Common\EfPerfTest.Common.csproj" />
   </ItemGroup>
 

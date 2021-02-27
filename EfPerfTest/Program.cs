@@ -1,5 +1,4 @@
 ﻿using EfPerfTest.Common.Models;
-using EfPerfTest.Ef6.MySqlContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +25,6 @@ namespace EfPerfTest
             };
 
             Console.WriteLine("Save to: MySqlEf6Repository");
-            new MySqlEf6Repository().SaveOncePerCustomer(customers);
 
             //Console.WriteLine("Save to: SQLiteEf6Repository");
             //new SQLiteEf6Repository().SaveOncePerCustomer(customers);

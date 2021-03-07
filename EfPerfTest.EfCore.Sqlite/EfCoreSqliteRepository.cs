@@ -10,15 +10,35 @@ namespace EfPerfTest.EfCore.Sqlite
 {
     public class EfCoreSqliteRepository : IEfPerfTestRepository
     {
+        private readonly string dbFilename;
+
+        public EfCoreSqliteRepository(string dbFilename)
+        {
+            this.dbFilename = dbFilename;
+        }
+
+        public void SaveAllAtOnce(IEnumerable<Customer> customers)
+        {
+            EfCoreSqliteContext context = CreateContext();
+            context.AddRange(customers);
+            context.SaveChanges();
+        }
+
         public void SaveOncePerCustomer(IEnumerable<Customer> customers)
         {
-            var context = new EfCoreSqliteContext();
+            EfCoreSqliteContext context = CreateContext();
             foreach(var customer in customers)
             {
-                Console.WriteLine(customer);
                 context.Add(customer);
                 context.SaveChanges();
             }
+        }
+
+        private EfCoreSqliteContext CreateContext()
+        {
+            var context = new EfCoreSqliteContext(dbFilename);
+            context.Database.EnsureCreated();
+            return context;
         }
     }
 }

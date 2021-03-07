@@ -17,5 +17,8 @@ namespace EfPerfTest.Common.Models
         public string Address4 { get; set; }
         public override string ToString() => $"{Id}:{Name}:{Birthday.ToShortDateString()}";
         public IList<Account> Accounts { get; set; } = new List<Account>();
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string CustomerNumber { get; set; }
     }
 }

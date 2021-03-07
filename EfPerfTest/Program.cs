@@ -1,7 +1,12 @@
-﻿using EfPerfTest.Common.Models;
+﻿using Bogus;
+using EfPerfTest.Common.Models;
 using EfPerfTest.EfCore.Sqlite;
+using EfPerfTest.Source;
+using EfPerfTest.Xml;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 
 namespace EfPerfTest
@@ -15,28 +20,41 @@ namespace EfPerfTest
     {
         static void Main(string[] args)
         {
-            
-            Console.WriteLine("Hello World! ");
+            var timer = Stopwatch.StartNew();
 
-            IEnumerable<Customer> customers = new List<Customer>
-            {
-                new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-17), Accounts = new List<Account>
-                {
-                    new Account { AcctNumber="5", AcctType="T", Transactions = new List<Transaction>
-                    {
-                        new Transaction { TransType = "D", Amount = 1.23m, Date = DateTime.UtcNow },
-                        new Transaction { TransType = "D", Amount = 14.23m, Date = DateTime.UtcNow },
-                        new Transaction { TransType = "D", Amount = 166.23m, Date = DateTime.UtcNow },
-                        new Transaction { TransType = "D", Amount = 1888.23m, Date = DateTime.UtcNow }
-                    }},
-                }},
-                new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-19)},
-                new Customer { Name = Guid.NewGuid().ToString(), Birthday = DateTime.UtcNow.AddYears(-21)}
-            };
+            var fake = new Fake();
 
-            new EfCoreSqliteRepository().SaveOncePerCustomer(customers);
+            int customerCount = 8500;
+            int batches = 10;
+            Console.WriteLine($"Loading {customerCount*batches}");
+            Console.WriteLine();
 
-            Console.WriteLine("End of the World!");
+            string myDocuments = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            // 1,000 to 10+ minutes
+            // new EfCoreSqliteRepository().SaveOncePerCustomer(fake.LoadCustomers(customerCount * batches));
+
+            // 1,000 - 21 seconds
+            // 4,000 - 1:26
+            // 10,000 - 3:04
+            //new EfCoreSqliteRepository(Path.Combine(myDocuments, "Customers.sqlite3"))
+            //    .SaveAllAtOnce(fake.LoadCustomers(customerCount * batches));
+
+            // 10 * 100 - 22 seconds
+            // 10 * 400 - 1:16
+            // 10 * 1000 - 3:11
+            //var repo = new EfCoreSqliteRepository();
+            //for (int i = 0; i < batches; i++)
+            //{
+            //    Console.WriteLine($"Saving batch {i}");
+            //    repo.SaveAllAtOnce(fake.LoadCustomers(customerCount));        
+            //}
+
+            new XmlSaveRepository(Path.Combine(myDocuments, "Customers_85000.xml"))
+                .SaveAllAtOnce(fake.LoadCustomers(customerCount * batches));
+
+            Console.WriteLine();
+            Console.WriteLine("Loading took: " + timer.Elapsed);
         }
     }
 }

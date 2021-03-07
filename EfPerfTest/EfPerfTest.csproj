@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bogus" Version="33.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -15,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EfPerfTest.Common\EfPerfTest.Common.csproj" />
     <ProjectReference Include="..\EfPerfTest.EfCore.Sqlite\EfPerfTest.EfCore.Sqlite.csproj" />
+    <ProjectReference Include="..\EfPerfTest.Xml\EfPerfTest.Xml.csproj" />
   </ItemGroup>
 
 </Project>

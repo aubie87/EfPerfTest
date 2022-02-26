@@ -7,13 +7,13 @@ namespace EfPerfTest.EfCore.Sqlite
 {
     public class EfCoreSqliteContext : DbContext
     {
-        private readonly string dbFilename;
+        private readonly string _dbFilename;
 
-        DbSet<Customer> Customers { get; set; }
+        public DbSet<Customer> Customers => Set<Customer>();
 
         public EfCoreSqliteContext(string dbFilename)
         {
-            this.dbFilename = dbFilename;
+            _dbFilename = dbFilename;
             //SavingChanges += SavingChangesHandler;
         }
 
@@ -24,7 +24,10 @@ namespace EfPerfTest.EfCore.Sqlite
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Data Source={dbFilename}");
+            optionsBuilder
+                .UseSqlite($"Data Source={_dbFilename}")
+                .EnableDetailedErrors()
+                .EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,17 +35,17 @@ namespace EfPerfTest.EfCore.Sqlite
             modelBuilder.Entity<Customer>()
                 .ToTable("Customer");
 
-            modelBuilder.Entity<Customer>()
-                .Property(p => p.Name)
-                .IsRequired();
+            //modelBuilder.Entity<Customer>()
+            //    .Property(p => p.Name)
+            //    .IsRequired();
 
-            modelBuilder.Entity<Account>()
-                .Property(p => p.AcctNumber)
-                .IsRequired();
+            //modelBuilder.Entity<Account>()
+            //    .Property(p => p.AcctNumber)
+            //    .IsRequired();
 
-            modelBuilder.Entity<Transaction>()
-                .Property(p => p.TransType)
-                .IsRequired();
+            //modelBuilder.Entity<Transaction>()
+            //    .Property(p => p.TransType)
+            //    .IsRequired();
         }
     }
 }

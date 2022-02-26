@@ -10,11 +10,11 @@ namespace EfPerfTest.EfCore.Sqlite
 {
     public class EfCoreSqliteRepository : IEfPerfTestRepository
     {
-        private readonly string dbFilename;
+        private readonly string _dbFilename;
 
         public EfCoreSqliteRepository(string dbFilename)
         {
-            this.dbFilename = dbFilename;
+            _dbFilename = dbFilename;
         }
 
         public void SaveAllAtOnce(IEnumerable<Customer> customers)
@@ -36,7 +36,7 @@ namespace EfPerfTest.EfCore.Sqlite
 
         private EfCoreSqliteContext CreateContext()
         {
-            var context = new EfCoreSqliteContext(dbFilename);
+            var context = new EfCoreSqliteContext(_dbFilename);
             context.Database.EnsureCreated();
             return context;
         }

@@ -9,8 +9,8 @@ namespace EfPerfTest.Common.Models
     public class Account
     {
         public int Id { get; set; }
-        public string AcctNumber { get; set; }
-        public string AcctType { get; set; }
+        public string AcctNumber { get; set; } = string.Empty;
+        public string AcctType { get; set; } = string.Empty;
         public IList<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }

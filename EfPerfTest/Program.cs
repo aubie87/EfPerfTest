@@ -24,7 +24,7 @@ namespace EfPerfTest
 
             var fake = new Fake();
 
-            int customerCount = 8500;
+            int customerCount = 50;
             int batches = 10;
             Console.WriteLine($"Loading {customerCount*batches}");
             Console.WriteLine();
@@ -37,8 +37,8 @@ namespace EfPerfTest
             // 1,000 - 21 seconds
             // 4,000 - 1:26
             // 10,000 - 3:04
-            //new EfCoreSqliteRepository(Path.Combine(myDocuments, "Customers.sqlite3"))
-            //    .SaveAllAtOnce(fake.LoadCustomers(customerCount * batches));
+            new EfCoreSqliteRepository(Path.Combine(myDocuments, "Customers_5000.sqlite3"))
+                .SaveAllAtOnce(fake.LoadCustomers(customerCount * batches));
 
             // 10 * 100 - 22 seconds
             // 10 * 400 - 1:16
@@ -50,8 +50,8 @@ namespace EfPerfTest
             //    repo.SaveAllAtOnce(fake.LoadCustomers(customerCount));        
             //}
 
-            new XmlSaveRepository(Path.Combine(myDocuments, "Customers_85000.xml"))
-                .SaveAllAtOnce(fake.LoadCustomers(customerCount * batches));
+            //new XmlSaveRepository(Path.Combine(myDocuments, "Customers_5000.xml"))
+            //    .SaveAllAtOnce(fake.LoadCustomers(customerCount * batches));
 
             Console.WriteLine();
             Console.WriteLine("Loading took: " + timer.Elapsed);
